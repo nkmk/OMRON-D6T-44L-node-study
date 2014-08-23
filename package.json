@@ -1,0 +1,24 @@
+{
+  "name": "OMRON-D6T-44L-node-study",
+  "version": "0.0.0",
+  "description": "OMRON-D6T-44L-node-study =====================",
+  "main": "app.js",
+  "dependencies": {
+    "serialport": "^1.4.5"
+  },
+  "devDependencies": {
+    "serialport": "^1.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nkmk/OMRON-D6T-44L-node-study.git"
+  },
+  "author": "nkmk",
+  "bugs": {
+    "url": "https://github.com/nkmk/OMRON-D6T-44L-node-study/issues"
+  },
+  "homepage": "https://github.com/nkmk/OMRON-D6T-44L-node-study"
+}
