@@ -6,6 +6,8 @@
 @container_width: (@box_width + @box_margin * 2) * @box_count;
 @container_height: (@box_height + @box_margin * 2) * @box_count;
 
+@wrap_width: @container_width;
+
 .box{
 	width: @box_width;
 	height: @box_height;
@@ -18,4 +20,10 @@
 .container{
 	width: @container_width;
 	height: @container_height;
+	margin: 0 auto;
+}
+
+#wrap{
+	width: @wrap_width;
+	margin: 0 auto;
 }

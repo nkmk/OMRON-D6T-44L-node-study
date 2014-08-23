@@ -8,4 +8,9 @@
 .container {
   width: 616px;
   height: 616px;
+  margin: 0 auto;
+}
+#wrap {
+  width: 616px;
+  margin: 0 auto;
 }
