@@ -1,0 +1,11 @@
+.box {
+  width: 150px;
+  height: 150px;
+  margin: 2px;
+  float: left;
+  background-color: black;
+}
+.container {
+  width: 616px;
+  height: 616px;
+}

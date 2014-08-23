@@ -1,0 +1,21 @@
+@box_width: 150px;
+@box_height: 150px;
+@box_margin: 2px;
+@box_count: 4;
+
+@container_width: (@box_width + @box_margin * 2) * @box_count;
+@container_height: (@box_height + @box_margin * 2) * @box_count;
+
+.box{
+	width: @box_width;
+	height: @box_height;
+	margin: @box_margin;
+
+	float: left;
+	background-color:black;
+}
+
+.container{
+	width: @container_width;
+	height: @container_height;
+}
