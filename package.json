@@ -7,7 +7,8 @@
     "serialport": "^1.4.5"
   },
   "devDependencies": {
-    "serialport": "^1.4.5"
+    "serialport": "^1.4.5",
+    "socket.io": "^1.0.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
