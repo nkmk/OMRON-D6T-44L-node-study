@@ -1,7 +1,9 @@
 var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
-// var portName = "/dev/tty.usbmodem1411";
-var portName = "/dev/tty.usbserial-A9IDTB3Z"; // nano
+
+// var portName = "/dev/tty.usbserial-A9IDTB3Z"; // Mac Arduino Nano
+// var portName = "/dev/tty.usbmodem1411";  // Mac Arduino UNO
+var portName = "COM53"; // Windows
 
 // list ports
 // serialport.list(function (err, ports) {
@@ -25,9 +27,11 @@ sp.on("open", function(){
         var jsonData;
         try {
             jsonData = JSON.parse(buffer);
-            io.sockets.json.emit('tempData', jsonData);
-            console.log('PTAT: ' + jsonData.PTAT);
-            console.log('TEMP: ' + jsonData.TEMP);
+            if(jsonData.PTAT > 0){
+                io.sockets.json.emit('tempData', jsonData);
+                // console.log('PTAT: ' + jsonData.PTAT);
+                // console.log('TEMP: ' + jsonData.TEMP);
+            }
         } catch(e) {
             // JSONじゃない場合そのまま表示
             console.log("not JSON");
@@ -67,8 +71,16 @@ io.sockets.on('connection', function(socket) {
     console.log("server is connected")
 });
 
-var port = 3000;
 var host = 'localhost';
+var port = 3000;
+
+if(process.argv[2]){
+    host = process.argv[2];
+}
+
+if(process.argv[3]){
+    port = process.argv[3];
+}
 
 app.listen(port, host);
 console.log("server start: http://" + host + ":" + port);

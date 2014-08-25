@@ -1,6 +1,9 @@
 // var socket = io.connect(location.protocol+"//"+location.hostname);
 var socket = io.connect();
 
+var minTemp = 20;
+var maxTemp = 40;
+
 socket.on('connect', function(){
     console.log('client:connect');
 });
@@ -9,8 +12,9 @@ socket.on('tempData', function(data){
   var temp;
   var i;
   var selector;
-  var minTemp = 20;
-  var maxTemp = 40;
+
+  minTemp = Number($("#minTemp").val()) || 0;
+  maxTemp = Number($("#maxTemp").val()) || 0;
 
   for(i=0; i<16; i++){
     selector = "#box" + i;
@@ -22,9 +26,9 @@ socket.on('tempData', function(data){
 
 function normalize(value, inMin, inMax, outMin, outMax){
   if(value > inMax){
-    return inMax;
+    return outMax;
   }else if(value < inMin){
-    return inMin;
+    return outMin;
   }
   return (value - inMin)/(inMax -inMin) * outMax + outMin;
 }

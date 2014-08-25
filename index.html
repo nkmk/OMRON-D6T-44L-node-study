@@ -1,11 +1,17 @@
 <html>
   <head>
-    <title>OMRON-D6T-44L-node-study</title>
+    <title>Temperature Matrix</title>
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <div id="wrap">
       <h1>Temperature Matrix</h1>
+      <form>
+        <label for="minTemp">Min: </label>
+        <input id="minTemp" class="numInput" type="number" value="20" />
+        <label for="maxTemp">Max: </label>
+        <input id="maxTemp" class="numInput" type="number" value="40" />
+      </form>
       <div class="container">
         <div id='box0' class="box"></div>
         <div id='box1' class="box"></div>
