@@ -1,6 +1,7 @@
 var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
-var portName = "/dev/tty.usbmodem1411";
+// var portName = "/dev/tty.usbmodem1411";
+var portName = "/dev/tty.usbserial-A9IDTB3Z"; // nano
 
 // list ports
 // serialport.list(function (err, ports) {
