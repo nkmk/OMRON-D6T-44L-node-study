@@ -69,9 +69,16 @@ io.sockets.on('connection', function(socket) {
     console.log("server is connected")
 });
 
+var host = 'localhost';
 var port = 3000;
-// var host = 'localhost';
-var host = '43.2.97.204';
+
+if(process.argv[2]){
+    host = process.argv[2];
+}
+
+if(process.argv[3]){
+    port = process.argv[3];
+}
 
 app.listen(port, host);
 console.log("server start: http://" + host + ":" + port);
