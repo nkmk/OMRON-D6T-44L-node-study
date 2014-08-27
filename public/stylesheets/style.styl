@@ -6,8 +6,6 @@ box_count = 4;
 container_width = (box_width + box_margin * 2) * box_count;
 container_height = (box_height + box_margin * 2) * box_count;
 
-wrap_width = container_width;
-
 numInput_width = 50px;
 
 .box{
@@ -22,11 +20,11 @@ numInput_width = 50px;
 .container{
 	width: container_width;
 	height: container_height;
-	margin: auto;
+	margin: 0 auto 12px;
 }
 
 #wrap{
-	width: wrap_width;
+	width: container_width;
 	margin: 0 auto;
 }
 
@@ -35,6 +33,7 @@ numInput_width = 50px;
 }
 
 h1{
-	margin: 10px 0;
+	margin: 20px 0;
+	border-bottom: 4px solid;
 }
 

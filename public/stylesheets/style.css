@@ -8,7 +8,7 @@
 .container {
   width: 616px;
   height: 616px;
-  margin: auto;
+  margin: 0 auto 12px;
 }
 #wrap {
   width: 616px;
@@ -18,5 +18,6 @@
   width: 50px;
 }
 h1 {
-  margin: 10px 0;
+  margin: 20px 0;
+  border-bottom: 4px solid;
 }

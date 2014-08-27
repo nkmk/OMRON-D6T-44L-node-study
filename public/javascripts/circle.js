@@ -4,14 +4,14 @@ var socket = io.connect();
 var minTemp = 20;
 var maxTemp = 40;
 
-var w = 616;
-var h = 616;
+var w = $(".container").width();
+var h = w;
 var col_num = 4;
 var row_num = 4;
 var circles;
 
 $(function(){
-  var svg = d3.select("#wrap").append("svg").attr("width", w).attr("height", h);
+  var svg = d3.select(".container").append("svg").attr("width", w).attr("height", h);
   var dataset = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
   circles = svg.selectAll("circle").data(dataset).enter().append("circle");
   circles.attr("cx", function(d, i) {
