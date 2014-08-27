@@ -52,7 +52,7 @@ var url = require('url');
 var app_handler = function(req, res) {
     var path, _url;
     _url = url.parse(decodeURI(req.url), true);
-    path = _url.pathname === '/' ? '/index.html' : _url.pathname;
+    path = _url.pathname === '/' ? '/index_d3.html' : _url.pathname;
     console.log(req.method + " - " + path);
     fs.readFile(__dirname + path, function(err, data) {
         if (err) {

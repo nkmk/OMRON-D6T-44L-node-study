@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Temperature Matrix by D3</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>Temperature Matrix by D3</h1>
+      <form>
+        <label for="minTemp">Min: </label>
+        <input id="minTemp" class="numInput" type="number" value="20" />
+        <label for="maxTemp">Max: </label>
+        <input id="maxTemp" class="numInput" type="number" value="40" />
+      </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="./main_d3.js"></script>
+  </body>
+</html>
