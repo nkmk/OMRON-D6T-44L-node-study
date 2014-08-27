@@ -1,24 +1,21 @@
 // var socket = io.connect(location.protocol+"//"+location.hostname);
 var socket = io.connect();
 
-var minTemp = 20;
-var maxTemp = 40;
-
 var w = $(".container").width();
 var h = w;
 var col_num = 4;
 var row_num = 4;
-var circles;
 
 $(function(){
-  var svg = d3.select(".container").append("svg").attr("width", w).attr("height", h);
   var dataset = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-  circles = svg.selectAll("circle").data(dataset).enter().append("circle");
-  circles.attr("cx", function(d, i) {
-    return (i%col_num * w/col_num) + w/col_num/2;
-  })
-  .attr("cy",function(d, i){
-    return (Math.floor(i/row_num) * h/row_num) + h/row_num/2;
+  d3.select(".container").append("svg").attr({width: w, height: h})
+  .selectAll("circle").data(dataset).enter().append("circle").attr({
+    cx: function(d, i) {
+      return (i%col_num * w/col_num) + w/col_num/2;
+    },
+    cy: function(d, i){
+      return (Math.floor(i/row_num) * h/row_num) + h/row_num/2;
+    }
   });
 });
 
@@ -28,14 +25,17 @@ socket.on('connect', function(){
 
 socket.on('tempData', function(data){
   var temp;
-  minTemp = Number($("#minTemp").val()) || 0;
-  maxTemp = Number($("#maxTemp").val()) || 0;
+  var dataset = data.TEMP;
+  var minTemp = Number($("#minTemp").val()) || 0;
+  var maxTemp = Number($("#maxTemp").val()) || 0;
 
-  circles.attr("r", function(d, i) {
-    return normalize(data.TEMP[i], minTemp, maxTemp, 0, w/col_num/2);
-  })
-  .attr("fill", function(d, i){
-    temp = normalize(data.TEMP[i], minTemp, maxTemp, 0, 255);
-    return "#" + rgbToHex(temp, 0, 255-temp);
+  d3.select(".container").selectAll("circle").data(dataset).attr({
+    r: function(d) {
+      return normalize(d, minTemp, maxTemp, 0, w/col_num/2);
+    },
+    fill: function(d){
+      temp = normalize(d, minTemp, maxTemp, 0, 255);
+      return "#" + rgbToHex(temp, 0, 255-temp);
+    }
   });
 });
