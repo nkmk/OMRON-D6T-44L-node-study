@@ -4,8 +4,8 @@ var socket = io.connect();
 var minTemp = 20;
 var maxTemp = 40;
 
-var w = 480;
-var h = 480;
+var w = 600;
+var h = 600;
 var col_num = 4;
 var row_num = 4;
 var circles;
@@ -39,26 +39,3 @@ socket.on('tempData', function(data){
     return "#" + rgbToHex(temp, 0, 255-temp);
   });
 });
-
-function normalize(value, inMin, inMax, outMin, outMax){
-  if(value > inMax){
-    return outMax;
-  }else if(value < inMin){
-    return outMin;
-  }
-  return (value - inMin)/(inMax -inMin) * outMax + outMin;
-}
-
-// http://stackoverflow.com/questions/7604823/how-to-convert-rgb-values-into-regular-css-color-values
-function rgbToHex(R, G, B){
-    return toHex(R) + toHex(G) + toHex(B);
-}
-
-function toHex(n){
-    n = parseInt(n, 10);
-    if( isNaN(n) ){ 
-        return "00";
-    }
-    n = Math.max(0, Math.min(n,255));
-    return "0123456789ABCDEF".charAt((n - n % 16) / 16) + "0123456789ABCDEF".charAt(n % 16);
-}
