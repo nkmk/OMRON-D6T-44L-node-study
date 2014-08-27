@@ -1,18 +1,43 @@
+var express = require('express');
+var path = require('path');
+
+var routes = require('./routes/index.js');  // 拡張子は省略可能
+var box = require('./routes/box.js');
+var circle = require('./routes/circle.js');
+
+var app = express();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', routes);
+app.use('/box', box);
+app.use('/circle', circle);
+
+
+var host = 'localhost';
+var port = 3000;
+
+if(process.argv[2]){
+    host = process.argv[2];
+}
+
+if(process.argv[3]){
+    port = process.argv[3];
+}
+
+var server = app.listen(port, host);
+console.log("server start: http://" + host + ":" + port);
+
+
 var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
 
 // var portName = "/dev/tty.usbserial-A9IDTB3Z"; // Mac Arduino Nano
 // var portName = "/dev/tty.usbmodem1411";  // Mac Arduino UNO
 var portName = "COM53"; // Windows
-
-// list ports
-// serialport.list(function (err, ports) {
-//   ports.forEach(function(port) {
-//     console.log(port.comName);
-//     console.log(port.pnpId);
-//     console.log(port.manufacturer);
-//   });
-// });
 
 var sp = new SerialPort(portName, {
     baudrate: 9600,
@@ -45,42 +70,8 @@ sp.on("open", function(){
     });
 });
 
-var http = require('http');
-var fs = require('fs');
-var url = require('url');
-
-var app_handler = function(req, res) {
-    var path, _url;
-    _url = url.parse(decodeURI(req.url), true);
-    path = _url.pathname === '/' ? '/index_d3.html' : _url.pathname;
-    console.log(req.method + " - " + path);
-    fs.readFile(__dirname + path, function(err, data) {
-        if (err) {
-            res.writeHead(500);
-            res.end('error load file');
-        }
-        res.writeHead(200);
-        res.end(data);
-    });
-};
-
-var app = http.createServer(app_handler);
-var io = require('socket.io').listen(app);
+var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function(socket) {
     console.log("server is connected")
 });
-
-var host = 'localhost';
-var port = 3000;
-
-if(process.argv[2]){
-    host = process.argv[2];
-}
-
-if(process.argv[3]){
-    port = process.argv[3];
-}
-
-app.listen(port, host);
-console.log("server start: http://" + host + ":" + port);
