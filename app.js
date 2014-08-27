@@ -10,6 +10,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(require('stylus').middleware(path.join(__dirname, 'public')));  // exress.staticより前に書く
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);

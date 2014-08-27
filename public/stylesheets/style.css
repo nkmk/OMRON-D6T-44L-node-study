@@ -3,12 +3,12 @@
   height: 150px;
   margin: 2px;
   float: left;
-  background-color: black;
+  background-color: #000;
 }
 .container {
   width: 616px;
   height: 616px;
-  margin: 0 auto;
+  margin: auto;
 }
 #wrap {
   width: 616px;
@@ -16,4 +16,7 @@
 }
 .numInput {
   width: 50px;
+}
+h1 {
+  margin: 10px 0;
 }

@@ -4,8 +4,8 @@ var socket = io.connect();
 var minTemp = 20;
 var maxTemp = 40;
 
-var w = 600;
-var h = 600;
+var w = 616;
+var h = 616;
 var col_num = 4;
 var row_num = 4;
 var circles;
