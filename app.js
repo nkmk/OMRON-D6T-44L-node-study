@@ -37,8 +37,8 @@ var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
 
 // var portName = "/dev/tty.usbserial-A9IDTB3Z"; // Mac Arduino Nano
-// var portName = "/dev/tty.usbmodem1411";  // Mac Arduino UNO
-var portName = "COM53"; // Windows
+var portName = "/dev/tty.usbmodem1411";  // Mac Arduino UNO
+// var portName = "COM53"; // Windows
 
 var sp = new SerialPort(portName, {
     baudrate: 9600,
@@ -55,8 +55,6 @@ sp.on("open", function(){
             jsonData = JSON.parse(buffer);
             if(jsonData.PTAT > 0){
                 io.sockets.json.emit('tempData', jsonData);
-                // console.log('PTAT: ' + jsonData.PTAT);
-                // console.log('TEMP: ' + jsonData.TEMP);
             }
         } catch(e) {
             // JSONじゃない場合そのまま表示

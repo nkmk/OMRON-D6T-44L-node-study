@@ -29,12 +29,22 @@ socket.on('tempData', function(data){
   var minTemp = Number($("#minTemp").val()) || 0;
   var maxTemp = Number($("#maxTemp").val()) || 0;
 
+  var scaleR = d3.scale.linear()
+    .domain([minTemp, maxTemp])
+    .range([0, w/col_num/2])
+    .clamp(true);
+
+  var scaleColor = d3.scale.linear()
+    .domain([minTemp, maxTemp])
+    .range([0, 255])
+    .clamp(true);
+
   d3.select(".container").selectAll("circle").data(dataset).attr({
     r: function(d) {
-      return normalize(d, minTemp, maxTemp, 0, w/col_num/2);
+      return scaleR(d);
     },
     fill: function(d){
-      temp = normalize(d, minTemp, maxTemp, 0, 255);
+      temp = scaleColor(d);
       return "#" + rgbToHex(temp, 0, 255-temp);
     }
   });
