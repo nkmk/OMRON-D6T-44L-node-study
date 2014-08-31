@@ -17,6 +17,6 @@ socket.on('tempData', function(data){
     selector = "#box" + i;
     $(selector).text(data.TEMP[i] + "°");
     temp = normalize(data.TEMP[i], minTemp, maxTemp, 0, 255);
-    $(selector).css("background-color", rgbToHex(temp, 0, 255-temp));
+    $(selector).css("background-color", "#" + rgbToHex(temp, 0, 255-temp));
   }
 });

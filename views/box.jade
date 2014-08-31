@@ -1,0 +1,18 @@
+extends ./layout.jade
+
+block content
+	#wrap
+		h1= title
+		.container
+			- for (var i=0; i<16; i++){
+				.box(id = "box"+i)
+			- }
+		form
+			label(for="minTemp") Min: 
+			input#minTemp.numInput(type="number", value="20")
+			label(for="maxTemp") Max: 
+			input#maxTemp.numInput(type="number" value="40")
+	script(src="/socket.io/socket.io.js")
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+	script(src="../javascripts/box.js")
+	script(src="../javascripts/utility.js")
