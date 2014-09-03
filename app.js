@@ -17,9 +17,11 @@ app.use('/', routes);
 app.use('/box', box);
 app.use('/circle', circle);
 
+var settings = require('./settings.js')
 
-var host = 'localhost';
-var port = 3000;
+var serialPortName = settings.serilaPortName;
+var host = settings.host;
+var port = settings.port;
 
 if(process.argv[2]){
     host = process.argv[2];
@@ -31,20 +33,15 @@ if(process.argv[3]){
 
 var server = app.listen(port, host);
 console.log("server start: http://" + host + ":" + port);
-
+console.log("serial port: " + serialPortName);
 
 var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
 
-// var portName = "/dev/tty.usbserial-A9IDTB3Z"; // Mac Arduino Nano
-// var portName = "/dev/tty.usbmodem1411";  // Mac Arduino UNO
-var portName = "COM53"; // Windows
-
-var sp = new SerialPort(portName, {
+var sp = new SerialPort(serialPortName, {
     baudrate: 9600,
     parser: serialport.parsers.readline("\n")
 });
-// }, false); // this is the openImmediately flag [default is true]
 
 sp.on("open", function(){
     console.log('open');
