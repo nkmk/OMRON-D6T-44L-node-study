@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
 router.get('/', function(req, res) {
-  res.render('circle');
+  res.render('circle', { title: 'Temperature Matrix by D3.js' });
 });
 
 module.exports = router;

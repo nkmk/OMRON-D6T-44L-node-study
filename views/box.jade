@@ -1,0 +1,12 @@
+extends ./layout.jade
+
+block content
+	#wrap
+		h1= title
+		.container
+			- for (var i=0; i<16; i++){
+				.box(id = "box"+i)
+			- }
+		include temp-form.jade
+	include scripts.jade
+	script(src="../javascripts/box.js")
