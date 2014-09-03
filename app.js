@@ -37,8 +37,8 @@ var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
 
 // var portName = "/dev/tty.usbserial-A9IDTB3Z"; // Mac Arduino Nano
-var portName = "/dev/tty.usbmodem1411";  // Mac Arduino UNO
-// var portName = "COM53"; // Windows
+// var portName = "/dev/tty.usbmodem1411";  // Mac Arduino UNO
+var portName = "COM53"; // Windows
 
 var sp = new SerialPort(portName, {
     baudrate: 9600,
