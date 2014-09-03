@@ -23,19 +23,21 @@ socket.on('connect', function(){
   console.log('client:connect');
 });
 
-socket.on('tempData', function(data){
+socket.on('jsonData', function(data){
   var temp;
   var dataset = data.TEMP;
   var minTemp = Number($("#minTemp").val()) || 0;
   var maxTemp = Number($("#maxTemp").val()) || 0;
 
-  d3.select(".container").selectAll("circle").data(dataset).attr({
-    r: function(d) {
-      return normalize(d, minTemp, maxTemp, 0, w/col_num/2);
-    },
-    fill: function(d){
-      temp = normalize(d, minTemp, maxTemp, 0, 255);
-      return "#" + rgbToHex(temp, 0, 255-temp);
-    }
-  });
+  if(data.PTAT > 0){
+    d3.select(".container").selectAll("circle").data(dataset).attr({
+      r: function(d) {
+        return normalize(d, minTemp, maxTemp, 0, w/col_num/2);
+      },
+      fill: function(d){
+        temp = normalize(d, minTemp, maxTemp, 0, 255);
+        return "#" + rgbToHex(temp, 0, 255-temp);
+      }
+    });
+  }
 });

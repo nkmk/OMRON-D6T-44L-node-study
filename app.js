@@ -53,15 +53,9 @@ sp.on("open", function(){
         var jsonData;
         try {
             jsonData = JSON.parse(buffer);
-            if(jsonData.PTAT > 0){
-                io.sockets.json.emit('tempData', jsonData);
-                // console.log('PTAT: ' + jsonData.PTAT);
-                // console.log('TEMP: ' + jsonData.TEMP);
-            }
+            io.sockets.json.emit('jsonData', jsonData);
         } catch(e) {
-            // JSONじゃない場合そのまま表示
-            console.log("not JSON");
-            console.log('data received: ' + data);
+            // JSONじゃない場合
             return;
         }
     });
